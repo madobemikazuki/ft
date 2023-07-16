@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="src/vue/vue3_2_36.js"></script>
+  <title>cpy</title>
+</head>
+
+<body>
+  <p>cpy いまのところ事前申請用</p>
+
+  <div id="app_view">
+    <!-- <div v-if="!exist_lines()"> -->
+    <div v-if="this.displayable">
+      <textarea @input="conversion_with_header" onfocus="this.select()" id="text_data"
+        placeholder="セルを貼り付ける or csvファイルをドロップする"></textarea>
+    </div>
+
+    <!-- 登録者ごとの名前をボタンに表示する -->
+    <div v-if="exist_lines()">
+      <ul class="line_up">
+        <li v-for="(name, index) in applicant_name_list">
+          <button @click="show_applicant_info(index)" class="fade_in size">{{name}}</button>
+        </li>
+      </ul>
+    </div>
+    <div v-else>
+      <p class="error_message">{{error_message}}</p>
+    </div>
+    <span class="big_name copy_target" @click="copy(selected_name)">{{selected_name}}</span>
+    <div>
+      <table>
+        <tr class="static_table_line" v-for="[key,value] of applicant">
+          <td class="keys" >{{key}} :</td>
+          <td class="copy_target cell" @click="copy(value)">{{value}}</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="bottom_height"></div>
+  </div>
+
+  <script src="src/util.js"></script>
+  <script src="src/cpy_base.js"></script>
+  <!--開発版用-->
+  <script src="src/tests/test_flame.js"></script>
+  <script src="src/tests/util_tests.js"></script>
+
+  <script type="text/javascript">
+    'use strict';
+    const APP = Vue.createApp(BASE).mount('#app_view');
+  </script>
+</body>
+
+</html>

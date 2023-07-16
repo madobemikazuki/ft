@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="src/vue/vue3_2_36.js"></script>
+  <title>半 -> 全</title>
+</head>
+
+<body>
+  <p>半 -> 全</p>
+
+  <div id="app_view">
+    <div v-for="remark in remarks">
+      <p>
+        <label for="remark.id" class="copy_target" @click="copy(remark.title)">{{remark.title}}</label>
+        <span v-show="remark.visible">
+          <input v-model="remark.source" type="text" required v-bind:size="remark.digit" v-bind:maxlength="remark.digit" v-bind:name="remark.id"
+            v-bind:id="remark.id" @keyup.enter="han_to_zen(remark)">
+        </span>
+        <br>
+        <span class="copy_target" @click="copy(remark.result)">{{remark.result}}</span>
+        <span v-show="remark.error_visible">{{remark.error_message}}</span>
+      </p>
+    </div>
+  </div>
+
+  <script src="src/util.js"></script>
+  <script src="src/zenhan_base.js"></script>
+  <!--開発版用-->
+  <script src="src/tests/test_flame.js"></script>
+  <script src="src/tests/util_tests.js"></script>
+
+  <script type="text/javascript">
+    'use strict';
+    const APP = Vue.createApp(BASE).mount('#app_view');
+  </script>
+</body>
+
+</html>
