@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="src/vue/vue3_2_36.js"></script>
+    <title>半 -> 全</title>
+  </head>
+
+  <body>
+    <h4>半 -> 全</h4>
+
+    <div id="app_view">
+      <div v-for="remark in remarks">
+        <label for="remark.id" class="copy_target" @click="copy(remark.title)"
+          >{{remark.title}}</label
+        ><br>
+          <input
+            class="hanzen"
+            required
+            v-show="remark.visible === false"
+            v-model="remark.source"
+            type="text"
+            v-bind:size="remark.digit"
+            v-bind:maxlength="remark.digit"
+            v-bind:name="remark.id"
+            v-bind:id="remark.id"
+            @input="han_to_zen(remark)"
+            autofocus
+          />
+        <p
+          v-show="remark.visible"
+          class="copy_target fade_in_bottom input"
+          @click="copy_result(remark)"
+        >
+          {{remark.result}}
+        </p>
+      </div>
+    </div>
+
+    <script src="src/util.js"></script>
+    <script src="src/hanzen_base.js"></script>
+    <!--開発版用-->
+    <script src="src/tests/test_flame.js"></script>
+    <script src="src/tests/util_tests.js"></script>
+
+    <script type="text/javascript">
+      "use strict";
+      const APP = Vue.createApp(BASE).mount("#app_view");
+    </script>
+  </body>
+</html>
