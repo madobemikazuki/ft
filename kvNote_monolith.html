@@ -1,4 +1,4 @@
-<!-- Saved from local source at 2023-09-30T12:29:29Z using monolith v2.7.0 -->
+<!-- Saved from local source at 2023-10-04T11:38:42Z using monolith v2.7.0 -->
 <!DOCTYPE html><html lang="ja"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,11 +8,12 @@
     <title>kvNote</title>
   </head>
   <body>
-    <p>kvNote</p>
+    <h6>kvNote</h6>
     <!--
     <input type="button" value="テスト実行" onclick="kvNoteTest.run()">
     -->
     <div id="app_view">
+      <p>{{file_name}}</p>
       <div v-if="enable_top_menu">
         <input type="file" @change="read" accept=".kvn" name="read_file_button">
         <span>　　　　　　</span>
@@ -42,7 +43,7 @@
           <p>
             <input v-show="enable_create" type="text" name="input_file_name" placeholder="ファイル名" maxlength="32" v-on:input="init_fn">
             <span> </span>
-            <input v-show="file_name_exists()" id="write_json" type="submit" value="jsonに出力する">
+            <input v-show="file_name_exists()" id="write_json" type="submit" value="Download フォルダに出力する">
             <!--
             <input id="write_csv" type="submit" value="csvに出力する_未定" />
           --></p>
