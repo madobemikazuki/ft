@@ -1,13 +1,13 @@
 ﻿Param(
   [Parameter(Mandatory = $True, Position = 0) ]
-  [ValidatePattern("r|c")]$_task,
+  [ValidatePattern("r|c")]$_class,
 
   [Parameter(Mandatory = $True, Position = 1)]
   [ValidatePattern("^\d{8}")][String]$_date,
 
   [Parameter(Mandatory = $True, Position = 2)]
   [ValidateCount(1, 4)]
-  [String[]]$_regists
+  [String[]]$_applicants
 )
 
 
@@ -24,7 +24,8 @@ function private:fn_transcription {
     [Parameter(Mandatory = $True, position = 2)]
     [String]$_full_names
   )
-  $output_file_path = $io_object.output + $io_object.headname + $io_object.class + "_" + $_full_names + $io_object.extension
+  $output_file_path = $io_object.output + $io_object.headname + $io_object.task + "_" + $_full_names + $io_object.extension
+  $target_sheet_page = 1
   # 中身の気になるあなたに
   #Write-Output $values
   . .\excel\read.ps1
@@ -37,39 +38,25 @@ function private:fn_transcription {
       PowerShellのファイルを UTF-8 で保存すると、日本語のシート名が検索できないので、
       代わりに .Worksheets.Item(シート番号) とする方法もあります。
     #>
-    $sheet = $book.Worksheets.Item(1)
+    $sheet = $book.Worksheets.Item($target_sheet_page)
 
     #mappingする
     foreach ($_ in $values) {
       $sheet.Cells.Item($_.point_x, $_.point_y) = $_.value
     }
     
-    # 関数へ切り出す
-    # Printer名をどうにかしないと
-    #$printer = Get-WmiObject Win32_Printer | Where-Object Name -eq "Wi-Fi Direct DCP-J526N"
-    #$printer.SetDefaultPrinter()
-    #Set-PrintConfiguration $printer.name -Color $False
-
-    # excel ファイル自体に両面印刷設定されていればOK
-    #Set-PrintConfiguration -PrinterName "B_J526N_USB" -DuplexingMode TwoSidedShortEdge
-
-    # 関数へ切り出す
-    $start_page = 1
-    $end_page = 2
-    $number_of_copies = 1
-
-
     # プリントアウトする
-    $book.PrintOut.Invoke(@($start_page, $end_page, $number_of_copies))
+    # ファイル出力より後にプリントアウトすると、
+    # write_xlsx.ps1 でファイルをクローズしているため存在しないオブジェクト参照となる。
+    #. .\excel\printing.ps1 $book $io_object.printing
 
-    #別ファイルに書き
-    . .\excel\write.ps1
-    write_xslx $book $output_file_path
-    
+    # 出力
+    . .\excel\write_xlsx.ps1 $book $output_file_path
   }
   catch [exception] {
     Write-Output "😢😢😢エラーをよく読んでね。"
     $error[0].ToString()
+    Write-Output $_
   }
   finally {
     @($sheet, $book) | ForEach-Object {
@@ -80,6 +67,8 @@ function private:fn_transcription {
     quit_excel
   }
 }
+
+
 
 
 function private:fn_obj_mapping {
@@ -157,7 +146,6 @@ function private:fn_apply_date {
 }
 
 
-
 function wbc_example {
   [cmdletbinding()]
   Param()
@@ -192,74 +180,45 @@ function wbc_example {
 }
 
 
-function script:fn_create_io_path_object {
-  Param(
-    [Parameter(Mandatory = $True, Position = 0)]
-    [String]$_template_file_path,
-    [Parameter(Mandatory = $True, Position = 1)]
-    [String]$_output_folder_path,
-    [Parameter(Mandatory = $True, Position = 2)]
-    [ValidatePattern("登録|解除")]
-    [string]$_class
-  )
-
-  $io_object = [PSCustomObject]@{
-    template  = $_template_file_path
-    output    = $_output_folder_path
-    class     = $_class
-    headname  = "WBC_"
-    extension = ".xlsx"
-  }
-  return $io_object
-}
-
-
 #申請日をフォーマット定義
 $application_date = fn_apply_date $_date
 
-
 # 登録者を読み込み
-$applicant_list = . .\ft_core\io\csv\read_applicants_fromT.ps1
+$private:registed_list = . .\ft_core\io\read_registed_people_fromT.ps1
 
 
 #今回の申請者を抽出する
 #ここで例外をキャッチする もっとましな書き方が望ましい。
-[PSCustomObject[]]$applicants = . .\ft_core\search_applicants.ps1 $applicant_list $_regists
-if (!($applicants.length -eq $_regists.length)) {
+[PSCustomObject[]]$applicants = . .\ft_core\search_applicants.ps1 $registed_list $_applicants
+if (!($applicants.length -eq $_applicants.length)) {
   Write-Host '貴様の入力した中登番号は登録状況リストには存在しない。'
   # 存在しない中央登録番号を入力するとapplicants.lengthが小さくなる。
   throw
 }
 
 
+# 設定読み込み
+$private:config = . .\ft_core\io\read_json.ps1 "${HOME}\Downloads\config\wbc.json"
+$private:io_object = [PSCustomObject]@{
+  task      = $config.$_class.task
+  headname  = $config.command_name
+  extension = $config.extension
+  template  = (${HOME} + $config.$_class.tamplate_file)
+  output    = (${HOME} + $config.$_class.output_folder)
+  printing  = $config.printing
+}
+
+
 #転記先のアドレスを定義
-$address_table = Import-Csv ${HOME}\Downloads\config\wbc_address_table.csv -Encoding utf8
+$address_table = Import-Csv -Path (${HOME} + $config.address_table_file) -Encoding utf8
 $HEADER = $address_table[0].psobject.Properties.Name
 
-$io_object = $Null
-
-# 登録モード
-if ($_task -eq "r") {
-  Write-Host "${_task} : 登録だね"
-  $private:wbc_r_xlsx_file = "${HOME}\Downloads\from_T\登録\WBC受検用紙_登録_原紙.xlsx"
-  $private:entered_wbc_r_folder = "${HOME}\Downloads\output\登録\WBC受検用紙\"
-  $io_object = fn_create_io_path_object $wbc_r_xlsx_file $entered_wbc_r_folder "登録"
-}
-
-# 解除モード
-if ($_task -eq "c") {
-  $private:wbc_c_xlsx_file = "${HOME}\Downloads\from_T\解除\WBC受検用紙_解除_原紙.xlsx"
-  $private:entered_wbc_c_folder = "${HOME}\Downloads\output\解除\WBC受検用紙\"
-  Write-Host "${_task} : 解除だね"
-  $io_object = fn_create_io_path_object $wbc_c_xlsx_file $entered_wbc_c_folder "解除"
-}
 
 [PSCustomObject[]]$applicants_info = fn_extract $application_date $applicants $HEADER
-#$applicants_info
-#Write-Host '245'
 $private:full_name_list = foreach ($_ in $applicants_info) { $_."氏名" }
 . .\ft_core\combined_name.ps1
 $applicant_names = one_liner $full_name_list
+
 
 [PSCustomObject[]]$for_posting = foreach ($applicant in $applicants_info) {
   $index = $applicants_info.indexOf($applicant)
@@ -268,10 +227,10 @@ $applicant_names = one_liner $full_name_list
     fn_obj_mapping $applicant $position $HEADER
   }
 }
+
+#結果を出力　なくてもよい
 $for_posting | format-table
 
 fn_transcription $for_posting $io_object $applicant_names
-
-
 
 exit 0

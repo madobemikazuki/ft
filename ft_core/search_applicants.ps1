@@ -1,6 +1,6 @@
 ﻿Param(
   [Parameter(Mandatory = $True, Position = 0)]
-  [PSCustomObject[]]$_applicants,
+  [PSCustomObject[]]$_registed_people,
   [Parameter(Mandatory = $True, Position = 1)]
   [ValidatePattern("^\d{2}\b\-\b\d{6}$")]
   [String[]]$_regist_nums,
@@ -17,7 +17,7 @@ try {
   #return $applicants | Select-Object | Where-Object { $_.$target -eq $regist_num }  
 
   $fit_peoples = foreach ($regist_num in $_regist_nums){
-    $_applicants | Select-Object | Where-Object{$_.$_target -eq $regist_num}
+    $_registed_people | Select-Object | Where-Object{$_.$_target -eq $regist_num}
   }
   return $fit_peoples
 }
