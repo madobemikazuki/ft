@@ -1,0 +1,15 @@
+﻿{
+  "wbc": [
+    "\\wbc.ps1",
+    "\\excel\\read.ps1",
+    "\\excel\\printing.ps1",
+    "\\excel\\write_xlsx.ps1",
+    "\\excel\\map_address.ps1",
+    "\\ft_core\\future_date.ps1",
+    "\\ft_core\\combined_name.ps1",
+    "\\ft_core\\search_applicants.ps1",
+    "\\ft_core\\your_company_names.ps1",
+    "\\ft_core\\io\\read_json.ps1",
+    "\\ft_core\\io\\read_registed_people_fromT.ps1"
+  ]
+}
