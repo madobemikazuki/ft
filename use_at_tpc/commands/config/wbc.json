@@ -1,0 +1,25 @@
+﻿{
+  "command_name": "wbc",
+  "extension": ".xlsx",
+  "address_table_file": ".\\config\\wbc_address_table.csv",
+  "printing": {
+    "printer_name": "必要なプリンタ名を記入すること",
+    "start_page": 1,
+    "end_page": 2,
+    "number_of_copies": 1,
+    "color": false
+  },
+  "r": {
+    "task": "登録",
+    "tamplate_file": "\\Downloads\\from_T\\登録\\WBC受検用紙_登録_原紙.xlsx",
+    "output_folder": "\\Downloads\\output\\登録\\WBC受検用紙\\",
+    "comment": "登録申請書類作成時のWBCテンプレートファイルとデータ入力後の出力先Path"
+  },
+  "c": {
+    "task": "解除",
+    "tamplate_file": "\\Downloads\\from_T\\解除\\WBC受検用紙_解除_原紙.xlsx",
+    "output_folder": "\\Downloads\\output\\解除\\WBC受検用紙\\",
+    "comment": "解除申請書類作成時のWBCテンプレートファイルとデータ入力後の出力先Path"
+  }
+}
+
