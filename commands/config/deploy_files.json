@@ -1,0 +1,30 @@
+﻿{
+  "wbc": [
+    "\\wbc.ps1",
+    "\\ft_core\\excel\\map_address.ps1",
+    "\\config\\wbc.json",
+    "\\ft_core\\future_date.ps1",
+    "\\ft_core\\combined_name.ps1",
+    "\\ft_core\\your_company_name.ps1",
+    "\\ft_core\\io\\read_json.ps1",
+    "\\ft_core\\io\\read_registed_people_fromT.ps1",
+    "..\\..\\EXE_wbc.bat"
+  ],
+  "gZEN":[
+    "\\gZEN.ps1",
+    "\\config\\gZEN.json",
+    "\\config\\csv_header\\gZEN_header_ANSI.txt",
+    "\\config\\csv_header\\gZEN_sorted_ANSI.txt",
+    "\\utils\\hanzen.ps1",
+    "\\utils\\post_code.ps1",
+    "\\utils\\notify_balloon.ps1",
+    "\\ft_core\\combined_name.ps1",
+    "\\ft_core\\io\\read_json.ps1",
+    "\\ft_core\\io\\export_csv.ps1",
+    "\\ft_core\\io\\find_files.ps1",
+    "\\ft_core\\io\\bind_as_csv.ps1",
+    "\\ft_core\\io\\read_to_array.ps1",
+    "..\\..\\web_apps\\cpy_ft\\cpy_ft_monolith.html",
+    "..\\..\\EXE_gZEN.bat"
+  ]
+}
