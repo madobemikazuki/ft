@@ -1,0 +1,50 @@
+﻿{
+  "command_name": "ed",
+  "version": "0.1",
+  "gZEN_csv": "\\Downloads\\TEMP\\gZEN_exported.csv",
+  "template_path" :"\\Downloads\\from_T\\原紙\\cd教育実施記録.xlsx",
+  "search_field": "中央登録番号",
+  "File": {
+    "head_name": "cd教育_",
+    "applicant": "漢字氏名",
+    "extension": ".xlsx"
+  },
+  "address_table":{
+    "登録時申請会社": "13:1",
+    "カタカナ氏名": "13:5",
+    "漢字氏名":"14:5",
+    "中央登録番号": "13:8"
+  },
+  "TS": {
+    "sheet_pages": {
+      "c": [1],
+      "d": [2],
+      "cd": [1, 2]
+    },
+    "export_folder": "\\Downloads\\from_T\\export\\cd教育実施記録\\TS\\"
+  },
+  "TP": {
+    "sheet_pages":{
+      "c": [3],
+      "d": [4],
+      "cd": [3,4]
+    },
+    "export_folder": "\\Downloads\\from_T\\export\\cd教育実施記録\\TP\\"
+  },
+  "IH": {
+    "sheet_pages": {
+      "c": [1],
+      "d": [2],
+      "cd": [1, 2]
+    },
+    "export_folder": "\\Downloads\\from_T\\export\\cd教育実施記録\\IH\\"
+  },
+  "J":{
+    "TODO":"未定。女性登録者の処置"
+  },
+  "printing": {
+    "number_of_copies": 1,
+    "color": false
+  }
+}
+

@@ -1,0 +1,11 @@
+﻿{
+  "command_name": "gZEN",
+  "orign_header": ".\\config\\csv_header\\gZEN_header_ANSI.txt",
+  "sorted_header": ".\\config\\csv_header\\gZEN_sorted_ANSI.txt",
+  "temp_folder": "\\Downloads",
+  "gZEN_targets": "*事前申請*.txt",
+  "export_path": "\\Downloads\\TEMP\\gZEN_exported.csv",
+  "cpy_path_monolith": "\\..\\web_apps\\cpy_ft\\cpy_ft_monolith.html",
+  "version": "1.1"
+}
+
