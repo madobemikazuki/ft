@@ -1,0 +1,15 @@
+﻿{
+  "command_name": "wbc",
+  "version": "0.2",
+  "paths": {
+    "registed_source": "\\Downloads\\TEMP\\登録者管理リスト.csv",
+    "gZEN_exported": "\\Downloads\\TEMP\\gZEN_exported_UTF8-bom.csv",
+    "application_coms": "\\Downloads\\TEMP\\Applicate_Coms.json",
+    "employ_coms": "\\Downloads\\TEMP\\Employ_Coms.json"
+  },
+  "field": {
+    "app_coms": ["電力申請会社番号", "電力申請会社名称"],
+    "emp_coms": ["グループ", "雇用番号", "雇用名称"]
+  }
+}
+
