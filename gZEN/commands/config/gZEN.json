@@ -1,0 +1,14 @@
+﻿{
+  "command_name": "gZEN",
+  "orign_header": ".\\config\\csv_header\\gZEN_header_ANSI.txt",
+  "sorted_header": ".\\config\\csv_header\\gZEN_sorted_ANSI.txt",
+  "temp_folder": "\\Downloads\\PAN",
+  "gZEN_targets": "*事前申請*.txt",
+  "app_coms" : "\\Downloads\\TEMP\\Applicate_Coms.json",
+  "reserved_info":"\\Downloads\\TEMP\\登録_予約日リスト_UTF8-bom.json",
+  "export_CSV_path": "\\Downloads\\TEMP\\gZEN_exported_UTF8-bom.csv",
+  "export_JSON_path": "\\Downloads\\TEMP\\gZEN_exported.gzen",
+  "cpy_path_monolith": "\\..\\web_apps\\cpy_ft\\cpy_ft_monolith.html",
+  "version": "1.4"
+}
+

@@ -1,0 +1,39 @@
+﻿{
+  "wbc": [
+    "\\commands\\wbc.ps1",
+    "\\commands\\config\\wbc.json",
+    "\\EXE_wbc.bat"
+  ],
+  "gZEN":[
+    "\\commands\\gZEN.ps1",
+    "\\commands\\config\\gZEN.json",
+    "\\commands\\config\\csv_header\\gZEN_header_ANSI.txt",
+    "\\commands\\config\\csv_header\\gZEN_sorted_ANSI.txt",
+    "\\web_apps\\cpy_ft\\cpy_ft_monolith.html",
+    "\\EXE_gZEN.bat"
+  ],
+  "coms":[
+    "\\commands\\coms.ps1",
+    "\\commands\\config\\coms.json",
+    "\\EXE_coms.bat"
+  ],
+  "ed":[
+    "\\commands\\ed.ps1",
+    "\\commands\\config\\ed.json",
+    "\\EXE_ed.bat"
+  ],
+  "wid":[
+    "\\commands\\wid.ps1",
+    "\\commands\\config\\wid_group.json",
+    "\\EXE_wid.bat"
+  ],
+  "coh":[
+    "\\commands\\coh.ps1",
+    "\\EXE_coh.bat"
+  ],
+  "rsv":[
+    "\\commands\\rsv.ps1",
+    "\\commands\\config\\rsv.json",
+    "\\EXE_rsv.bat"
+  ]
+}
