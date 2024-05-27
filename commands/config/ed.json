@@ -1,0 +1,61 @@
+﻿{
+  "command_name": "ed",
+  "version": "0.3",
+  "gZEN_csv": "\\Downloads\\TEMP\\gZEN_exported_UTF8-bom.csv",
+  "registered_list_csv":"\\Downloads\\PAN\\登録者管理リスト_coh.csv",
+  "csv_encoding": "UTF8",
+  "template_path" :"\\Downloads\\from_T\\原紙\\cd教育_実施記録.xlsx",
+  "search_field": "中央登録番号",
+  "File": {
+    "head_name": "cd教育_",
+    "applicant": "漢字氏名",
+    "extension": ".xlsx"
+  },
+  "replacement":"__value__",
+  "c":{
+    "address_table":{
+      "所属企業名": "13:1",
+      "カタカナ氏名": "13:5",
+      "漢字氏名":"14:5",
+      "中央登録番号": "13:8"
+    },
+    "sandwitch":"__value__)　　　　　　　(新入退域管理棟\r\n入退域教育含む"
+  },
+  "d":{
+    "address_table":{
+      "所属企業名": "13:1",
+      "カタカナ氏名": "13:5",
+      "漢字氏名":"14:5",
+      "中央登録番号": "13:9"
+    },
+    "sandwitch":"__value__"
+  },
+  "TS": {
+    "sheet_pages": {
+      "c": 1,
+      "d": 2
+    },
+    "export_folder": "\\Downloads\\export\\cd教育実施記録\\TS\\"
+  },
+  "TP": {
+    "sheet_pages":{
+      "c": 3,
+      "d": 4
+    },
+    "export_folder": "\\Downloads\\export\\cd教育実施記録\\TP\\"
+  },
+  "IH": {
+    "sheet_pages": {
+      "c": 1,
+      "d": 2
+    },
+    "export_folder": "\\Downloads\\export\\cd教育実施記録\\IH\\"
+  },
+  "J":{
+    "TODO":"未定。女性登録者の処置"
+  },
+  "printing": {
+    "number_of_copies": 1,
+    "color": false
+  }
+}
