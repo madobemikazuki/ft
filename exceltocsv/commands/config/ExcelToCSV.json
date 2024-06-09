@@ -1,0 +1,9 @@
+﻿{
+  "command_name": "ExcelToCSV",
+  "version": "0.1",
+  "com_fld":"\\Downloads\\PAN\\",
+  "export_folder":"\\Downloads\\PAN\\",
+  "waste_folder": "\\Downloads\\PAN\\waste\\",
+  "overview":"指定したフォルダ内の *.xls, *.xlsx ファイル全てを個別にcsvファイルとして出力するコマンド"
+}
+
