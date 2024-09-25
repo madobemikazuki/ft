@@ -108,5 +108,10 @@
   "one_array":[
     "\\commands\\tools\\one_array.ps1",
     "\\EXE_one_array.bat"
+  ],
+  "FnD":[
+    "\\commands\\FnD.ps1",
+    "\\commands\\config\\FnD.json",
+    "\\EXE_FnD.Bat"
   ]
 }
