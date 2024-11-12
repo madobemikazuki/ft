@@ -1,8 +1,0 @@
-﻿{
-  "command_name": "dl",
-  "version": "0.1",
-  "overview":"plist のファイルは自分で用意してください。",
-  "plist": "\\Downloads\\TEMP\\D.json",
-  "destination_folder": "\\Downloads\\TEMP\\"
-}
-
