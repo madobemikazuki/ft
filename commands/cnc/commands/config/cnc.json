@@ -1,0 +1,66 @@
+﻿{
+  "version": "0.2",
+  "comment": "登録者管理リストから申請者情報を取得して解除申請書に転記し、紙にプリントアウトする。",
+  "wid_path":"\\Downloads\\TEMP\\WID_LookUpHash.json",
+  "reserved_path":"\\Downloads\\TEMP\\解除_予約済み申請者リスト_UTF8-bom.json",
+  "registerer_path": "\\Downloads\\PAN\\Registered_utf8-bom.json",
+  "primary_key": "中登番号",
+  "extraction_list": [
+    "中登番号",
+    "FT_氏名_漢字",
+    "FT_氏名_カナ",
+    "FT_電力申請会社番号",
+    "FT_電力申請会社名称",
+    "作業者証番号",
+    "東電管理番号",
+    "担当主管課班名",
+    "管理会社名称",
+    "雇用名称"
+  ],
+  "prequisites":["電力申請会社名称","雇用名称"],
+  "poe_config": {
+    "overview": "poe_config は peo.ps1 が引数として受け取り、利用する設定情報",
+    "purpose": "目的 : 登録の予約情報と中央登録番号を基にWBC受検用紙へ自動転記して、プリントアウトもするよ",
+    "temp_path": "\\Downloads\\from_T\\原紙\\解除申請書_原紙_cnc.xlsx",
+    "temp_sheet_page": 1,
+    "max_renge": 10,
+    "export": {
+      "folder": "\\Downloads\\export\\解除\\解除申請書\\",
+      "file_name": {
+        "first": "解除申請書_",
+        "extension": ".xlsx",
+        "replaces": ["　", ""],
+        "conjunction": "_"
+      }
+    },
+    "printing": {
+      "style": "list",
+      "start_page": 1,
+      "end_page": 2,
+      "number_of_copies": 1,
+      "printable": false,
+      "dprintig_fiel": [
+        "漢字氏名",
+        "氏名（カナ）",
+        "電力申請会社番号",
+        "電力申請会社名称",
+        "作業者証番号",
+        "東電管理番号"
+      ],
+      "comment": "style は chunk or single or list"
+    },
+    "common_address_table": {
+      "解除予約日": [3, 7],
+      "担当主管課班名": [10, 10]
+    },
+    "address_table": {
+      "FT_氏名_漢字": [17, 6],
+      "FT_氏名_カナ": [17, 7],
+      "FT_電力申請会社番号": [17, 8],
+      "FT_電力申請会社名称": [17, 9],
+      "作業者証番号": [17, 10],
+      "東電管理番号": [17, 11]
+    }
+  }
+}
+
