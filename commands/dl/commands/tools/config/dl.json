@@ -1,8 +1,0 @@
-﻿{
-  "command_name": "dl",
-  "version": "0.2",
-  "overview":"targets のファイルと中身は自分で用意してください。",
-  "targets": "\\Downloads\\TEMP\\DL_targets.json",
-  "destination_folder": "\\Downloads\\PAN\\"
-}
-
