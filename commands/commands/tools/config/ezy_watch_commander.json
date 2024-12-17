@@ -1,0 +1,16 @@
+﻿{
+  "log_file": "\\Downloads\\FT_Watcher_log.txt",
+  "watch_targets": {
+    "rsv": {
+      "path": "\\Downloads\\FT_Watcher_log.txt",
+      "current_directory": "..\\ft_utils",
+      "orders": [
+        ".\\rsv.ps1",
+        ".\\gZEN.ps1",
+        ".\\applicants.ps1"
+      ],
+      "purpose": "予約情報の変更を検知したら orders のコマンドレットを実行する"
+    }
+  }
+}
+
