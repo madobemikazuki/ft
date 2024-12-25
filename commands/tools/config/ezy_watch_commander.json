@@ -1,0 +1,16 @@
+﻿{
+  "command_name": "ezy_watch_commander",
+  "version": "0.1",
+  "log_file": "\\Downloads\\FT_Watcher_log.txt",
+  "watch_targets": {
+    "rsv": {
+      "target_folder": "\\Downloads",
+      "target_file_name": "FT_Watcher_log.txt",
+      "destination":"\\Downloads\\PAN\\",
+      "commands_directory": "..\\ft_utils",
+      "orders": [".\\rsv.ps1", ".\\gZEN.ps1", ".\\applicants.ps1"],
+      "purpose": "予約情報の変更を検知したら orders のコマンドレットを実行する"
+    }
+  }
+}
+
